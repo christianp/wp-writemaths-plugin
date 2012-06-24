@@ -1,3 +1,4 @@
+(function($) {
 if(window.MathJax===undefined){
 	var script = document.createElement("script");
 	script.type = "text/javascript";
@@ -12,8 +13,8 @@ if(window.MathJax===undefined){
 	document.getElementsByTagName("head")[0].appendChild(script);
 }
 
-jQuery(function() {
-	jQuery('textarea#comment').writemaths();
+$(function() {
+	$('textarea#comment').writemaths();
 
 });
-
+})(jQuery);
