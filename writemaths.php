@@ -40,7 +40,7 @@ class Writemaths_Plugin
 
 		register_activation_hook(__FILE__,array($this,'do_activate'));
 
-		add_action('plugins_loaded',array($this,'do_plugins_loaded'));
+		add_action('wp_enqueue_scripts',array($this,'enqueue_scripts'));
 	}
 
 	function do_activate()
@@ -49,16 +49,13 @@ class Writemaths_Plugin
 		if (empty($option)) update_option($this->option_name, array('selector'=>'textarea#comment'));
 	}
 
-	function do_plugins_loaded()
+	function enqueue_scripts()
 	{
-		if(function_exists('wp_enqueue_script'))
-		{
-			//these scripts get loaded everywhere. How do I get them to only load when I'm looking at a post? is_single() seems not to work here
-			wp_enqueue_script('jquery_caretposition', $this->plugin_url . '/assets/jquery.caretposition.js');
-			wp_enqueue_script('textinputs_jquery', $this->plugin_url . '/assets/textinputs_jquery.js');
-			wp_enqueue_script('writemaths_plugin', $this->plugin_url . '/assets/writemaths.js');
-			wp_enqueue_script('writemaths_apply', $this->plugin_url . '/assets/writemaths_apply.js');
-		}
+		//these scripts get loaded everywhere. How do I get them to only load when I'm looking at a post? is_single() seems not to work here
+		wp_enqueue_script('jquery_caretposition', $this->plugin_url . '/assets/jquery.caretposition.js',array('jquery'));
+		wp_enqueue_script('textinputs_jquery', $this->plugin_url . '/assets/textinputs_jquery.js',array('jquery'));
+		wp_enqueue_script('writemaths_plugin', $this->plugin_url . '/assets/writemaths.js',array('jquery','jquery_caretposition','textinputs_jquery','mathjax','jquery-ui-position'));
+		wp_enqueue_script('writemaths_apply', $this->plugin_url . '/assets/writemaths_apply.js',array('writemaths_plugin'));
 	}
 }
 ?>
