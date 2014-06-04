@@ -2,6 +2,8 @@ A wordpress plugin for `jQuery.writemaths`
 
 Adds [write maths, see maths](http://christianp.github.com/writemaths) to comment boxes, and to TinyMCE editor instances (in particular, the post editor).
 
+Requires MathJax to be available to `wp_enqueue_script` under the name `'mathjax'`. The [Simple MathJax plugin](https://github.com/scoskey/Simple-Mathjax-wordpress-plugin) does this.
+
 ### Licence
 Copyright 2014 Christian Perfect
 
