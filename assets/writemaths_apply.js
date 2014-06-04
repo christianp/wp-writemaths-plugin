@@ -14,6 +14,6 @@ if(window.MathJax===undefined){
 }
 
 $(function() {
-	$('textarea#comment').writemaths();
+	$('textarea#comment').writemaths({position: 'center top', previewPosition: 'center bottom'});
 });
 })(jQuery);
