@@ -1,4 +1,4 @@
-A wordpress plugin for jQuery.writemaths
+A wordpress plugin for `jQuery.writemaths`
 
 Adds [write maths, see maths](http://christianp.github.com/writemaths) to comment boxes, and to TinyMCE editor instances (in particular, the post editor).
 
