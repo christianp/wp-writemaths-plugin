@@ -62,7 +62,7 @@ class Writemaths_Plugin
 
 	function add_writemaths_to_mce($initArray)
 	{
-		$initArray['init_instance_callback'] = 'function(ed) {console.log("container:",ed.getContentAreaContainer());jQuery(ed.getContentAreaContainer()).writemaths({iFrame:true,position: \'center top\', previewPosition: \'center bottom\'});}';
+		$initArray['init_instance_callback'] = 'function(ed) {jQuery(ed.getContentAreaContainer()).writemaths({iFrame:true,position: \'center top\', previewPosition: \'center bottom\'});}';
 
 		return $initArray;
 	}
