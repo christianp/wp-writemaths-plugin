@@ -15,6 +15,5 @@ if(window.MathJax===undefined){
 
 $(function() {
 	$('textarea#comment').writemaths();
-
 });
 })(jQuery);

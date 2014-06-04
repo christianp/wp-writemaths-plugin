@@ -41,6 +41,8 @@ class Writemaths_Plugin
 		register_activation_hook(__FILE__,array($this,'do_activate'));
 
 		add_action('wp_enqueue_scripts',array($this,'enqueue_scripts'));
+		add_action('admin_enqueue_scripts',array($this,'enqueue_scripts'));
+		add_filter('tiny_mce_before_init',array($this,'add_writemaths_to_mce'));
 	}
 
 	function do_activate()
@@ -52,10 +54,17 @@ class Writemaths_Plugin
 	function enqueue_scripts()
 	{
 		//these scripts get loaded everywhere. How do I get them to only load when I'm looking at a post? is_single() seems not to work here
-		wp_enqueue_script('jquery_caretposition', $this->plugin_url . '/assets/jquery.caretposition.js',array('jquery'));
 		wp_enqueue_script('textinputs_jquery', $this->plugin_url . '/assets/textinputs_jquery.js',array('jquery'));
-		wp_enqueue_script('writemaths_plugin', $this->plugin_url . '/assets/writemaths.js',array('jquery','jquery_caretposition','textinputs_jquery','mathjax','jquery-ui-position'));
+		wp_enqueue_script('rangy_core', $this->plugin_url . '/assets/rangy-core.js',array('jquery'));
+		wp_enqueue_script('writemaths_plugin', $this->plugin_url . '/assets/writemaths.js',array('jquery','rangy_core','textinputs_jquery','jquery-ui-position'));
 		wp_enqueue_script('writemaths_apply', $this->plugin_url . '/assets/writemaths_apply.js',array('writemaths_plugin'));
+	}
+
+	function add_writemaths_to_mce($initArray)
+	{
+		$initArray['init_instance_callback'] = 'function(ed) {console.log("container:",ed.getContentAreaContainer());jQuery(ed.getContentAreaContainer()).writemaths({iFrame:true,position: \'center top\', previewPosition: \'center bottom\'});}';
+
+		return $initArray;
 	}
 }
 ?>
